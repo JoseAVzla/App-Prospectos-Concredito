@@ -6,30 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardSearchView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <androidx.appcompat.widget.SearchView
-            android:id="@+id/searchView"
-            android:layout_width="match_parent"
-            app:iconifiedByDefault="false"
-            android:layout_height="match_parent"
-            app:queryHint="Busacar prospectos" />
-
-    </androidx.cardview.widget.CardView>
-
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerProspectoViewId"
+    <FrameLayout
+        android:id="@+id/contenedorFragmentos"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="80dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cardSearchView"/>
+        android:layout_marginTop="?attr/actionBarSize">
 
+    </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

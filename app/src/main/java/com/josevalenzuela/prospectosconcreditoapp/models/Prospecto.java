@@ -3,7 +3,9 @@ package com.josevalenzuela.prospectosconcreditoapp.models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Prospecto {
+import java.io.Serializable;
+
+public class Prospecto implements Serializable {
     @SerializedName("prospectoId") @Expose private int prospectoId;
     @SerializedName("nombre") @Expose private String nombre;
     @SerializedName("primerApellido") @Expose private String primerApellido;

@@ -5,7 +5,11 @@ import com.josevalenzuela.prospectosconcreditoapp.models.Prospecto;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
+import okhttp3.ConnectionPool;
+import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -22,9 +26,20 @@ public class ListadoProspectosInteractor implements ListadoProspectosContract.In
 
     @Override
     public void obtenerTodosProspectos() {
+
         prospectosList = new ArrayList<>();
+
+        ConnectionPool pool = new ConnectionPool(5, 10000, TimeUnit.MILLISECONDS);
+
+        OkHttpClient client = new OkHttpClient.Builder()
+                .connectionPool(pool)
+                .build();
+
+
+
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://192.168.0.8:8090/prospectos/api/")
+                .client(client)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -36,6 +51,7 @@ public class ListadoProspectosInteractor implements ListadoProspectosContract.In
             @Override
             public void onResponse(Call<List<Prospecto>> call, Response<List<Prospecto>> response) {
                 if (!response.isSuccessful()){
+                    listener.onSucces(prospectosList);
                     return;
                 }
                 prospectosList = new ArrayList<>();

@@ -1,6 +1,7 @@
 package com.josevalenzuela.prospectosconcreditoapp.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,17 +21,19 @@ import java.util.List;
 public class ProspectoAdapter extends RecyclerView.Adapter<ProspectoAdapter.ProspectosViewHolder> {
     private List<Prospecto> prospectosList;
     private Context context;
+    private OnItemClickListener onItemClickListener;
 
-    public ProspectoAdapter(List<Prospecto> prospectosList, Context context) {
+    public ProspectoAdapter(List<Prospecto> prospectosList, Context context, OnItemClickListener onItemClickListener) {
         this.prospectosList = prospectosList;
         this.context = context;
+        this.onItemClickListener = onItemClickListener;
     }
 
     @NonNull
     @Override
     public ProspectosViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.prospecto_list_item, parent, false);
-        ProspectosViewHolder prospectosViewHolder = new ProspectosViewHolder(view);
+        ProspectosViewHolder prospectosViewHolder = new ProspectosViewHolder(view, onItemClickListener);
         return prospectosViewHolder;
     }
 
@@ -49,6 +52,16 @@ public class ProspectoAdapter extends RecyclerView.Adapter<ProspectoAdapter.Pros
         } else {
             holder.linearLayout.setBackgroundColor(Color.parseColor("#1A0097A7"));
         }
+
+        //Seleccionando el prospecto para visualizar su informacion completa.
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+
     }
 
     @Override
@@ -57,18 +70,29 @@ public class ProspectoAdapter extends RecyclerView.Adapter<ProspectoAdapter.Pros
     }
 
 
-    public static class ProspectosViewHolder extends RecyclerView.ViewHolder {
+    public static class ProspectosViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        TextView nombreTxtview, estatusTxtView;
-        CardView cardView;
-        LinearLayout linearLayout;
+        private TextView nombreTxtview, estatusTxtView;
+        private CardView cardView;
+        private LinearLayout linearLayout;
+        private OnItemClickListener onItemClickListener;
 
-        public ProspectosViewHolder(@NonNull View itemView) {
+        public ProspectosViewHolder(@NonNull View itemView, OnItemClickListener onItemClickListener) {
             super(itemView);
             this.nombreTxtview = itemView.findViewById(R.id.idNombreTxtView);
             this.estatusTxtView = itemView.findViewById(R.id.estatusIdTxtView);
             this.cardView = itemView.findViewById(R.id.cardViewId);
             this.linearLayout = itemView.findViewById(R.id.layoutStatusColorId);
+            this.onItemClickListener = onItemClickListener;
         }
+
+        @Override
+        public void onClick(View v) {
+            onItemClickListener.onClickItem(getAdapterPosition());
+        }
+    }
+
+    public interface OnItemClickListener{
+        void onClickItem(int position);
     }
 }
