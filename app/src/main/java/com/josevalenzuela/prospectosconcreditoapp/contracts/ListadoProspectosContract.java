@@ -6,16 +6,16 @@ import java.util.List;
 
 public interface ListadoProspectosContract {
     interface View{
-        void showTest(List<Prospecto> prospectos);
+        void mostrarListaProspectos(List<Prospecto> prospectos);
         void showError(String error);
     }
 
     interface Presenter{
-        void testApi();
+        void obtenerProspectos();
     }
 
     interface Interactor{
-        void testingApi();
+        void obtenerTodosProspectos();
     }
 
     interface CompleteListener{

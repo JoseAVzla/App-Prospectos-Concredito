@@ -17,13 +17,13 @@ public class ListadoProspectosPresenter implements ListadoProspectosContract.Pre
     }
 
     @Override
-    public void testApi() {
-        interactor.testingApi();
+    public void obtenerProspectos() {
+        interactor.obtenerTodosProspectos();
     }
 
     @Override
     public void onSucces(List<Prospecto> prospectos) {
-        view.showTest(prospectos);
+        view.mostrarListaProspectos(prospectos);
     }
 
     @Override

@@ -21,7 +21,7 @@ public class ListadoProspectosInteractor implements ListadoProspectosContract.In
     }
 
     @Override
-    public void testingApi() {
+    public void obtenerTodosProspectos() {
         prospectosList = new ArrayList<>();
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://192.168.0.8:8090/prospectos/api/")
