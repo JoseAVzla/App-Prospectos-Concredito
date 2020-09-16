@@ -1,6 +1,6 @@
 package com.josevalenzuela.prospectosconcreditoapp.Interactor;
 
-import com.josevalenzuela.prospectosconcreditoapp.contracts.ApiTestContract;
+import com.josevalenzuela.prospectosconcreditoapp.contracts.ListadoProspectosContract;
 import com.josevalenzuela.prospectosconcreditoapp.models.Prospecto;
 
 import java.util.ArrayList;
@@ -12,11 +12,11 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class TestInteractor implements ApiTestContract.Interactor {
-    private ApiTestContract.CompleteListener listener;
+public class ListadoProspectosInteractor implements ListadoProspectosContract.Interactor {
+    private ListadoProspectosContract.CompleteListener listener;
     private List<Prospecto> prospectosList;
 
-    public TestInteractor(ApiTestContract.CompleteListener listener) {
+    public ListadoProspectosInteractor(ListadoProspectosContract.CompleteListener listener) {
         this.listener = listener;
     }
 
@@ -28,7 +28,7 @@ public class TestInteractor implements ApiTestContract.Interactor {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        JsonProspectoHolderApi holderApi = retrofit.create(JsonProspectoHolderApi.class);
+        JsonHolderApi holderApi = retrofit.create(JsonHolderApi.class);
 
         Call<List<Prospecto>> call = holderApi.getProspectos();
 

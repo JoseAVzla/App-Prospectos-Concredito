@@ -7,16 +7,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.josevalenzuela.prospectosconcreditoapp.Presenter.TestPresenter;
-import com.josevalenzuela.prospectosconcreditoapp.contracts.ApiTestContract;
+import com.josevalenzuela.prospectosconcreditoapp.Presenter.ListadoProspectosPresenter;
+import com.josevalenzuela.prospectosconcreditoapp.contracts.ListadoProspectosContract;
 import com.josevalenzuela.prospectosconcreditoapp.models.Prospecto;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements ApiTestContract.View {
+public class MainActivity extends AppCompatActivity implements ListadoProspectosContract.View {
 
     private TextView textView;
-    private ApiTestContract.Presenter presenter;
+    private ListadoProspectosContract.Presenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity implements ApiTestContract.V
 
         this.textView = findViewById(R.id.textView);
         Button testApiBtn = findViewById(R.id.buttonTest);
-        this.presenter = new TestPresenter(this);
+        this.presenter = new ListadoProspectosPresenter(this);
 
 
         testApiBtn.setOnClickListener(new View.OnClickListener() {
