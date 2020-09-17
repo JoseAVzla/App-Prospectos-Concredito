@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.josevalenzuela.prospectosconcreditoapp.Presenter.ListadoProspectosPresenter;
 import com.josevalenzuela.prospectosconcreditoapp.R;
 import com.josevalenzuela.prospectosconcreditoapp.adapters.ProspectoAdapter;
@@ -28,9 +29,10 @@ public class ListadoProspectosFragment extends Fragment implements ListadoProspe
     private ListadoProspectosContract.Presenter presenter;
     private RecyclerView recyclerViewProspecto;
     private Context mContext;
-    private Fragment infoProspectoFragment;
+    private Fragment infoProspectoFragment, agregarProspectoFragment;
     private List<Prospecto> prospectos;
     private ProspectoAdapter prospectoAdapter;
+    private FloatingActionButton addProspectoBtn;
 
     public ListadoProspectosFragment() {
         // Required empty public constructor
@@ -42,24 +44,26 @@ public class ListadoProspectosFragment extends Fragment implements ListadoProspe
         View fragmentView = inflater.inflate(R.layout.fragment_listadoprospectos, container, false);
         this.recyclerViewProspecto = fragmentView.findViewById(R.id.recyclerProspectoViewId);
         this.infoProspectoFragment = new InfoProspectoFragment();
+        this.agregarProspectoFragment = new AgegarProspectoFragmet();
+        this.addProspectoBtn = fragmentView.findViewById(R.id.nuevoProspectoBtn);
+
         presenter = new ListadoProspectosPresenter(this);
         presenter.obtenerProspectos();
 
-        Button button = fragmentView.findViewById(R.id.buttonNextFrag);
-
-        button.setOnClickListener(new View.OnClickListener() {
+        addProspectoBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Bundle bundle = new Bundle();
                 Prospecto prospecto = prospectos.get(0);
                 bundle.putSerializable("prospectoSeleccionado", prospecto);
-                infoProspectoFragment.setArguments(bundle);
-
+                agregarProspectoFragment.setArguments(bundle);
 
                 getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null)
-                        .replace(R.id.contenedorFragmentos, infoProspectoFragment).commit();
+                        .replace(R.id.contenedorFragmentos, agregarProspectoFragment).commit();
             }
         });
+
+
         // Inflate the layout for this fragment
         return fragmentView;
     }
