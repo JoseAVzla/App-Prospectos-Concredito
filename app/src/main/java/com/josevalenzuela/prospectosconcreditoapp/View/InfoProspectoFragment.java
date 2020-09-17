@@ -50,5 +50,7 @@ public class InfoProspectoFragment extends Fragment {
         rfcTextView.setText(prospecto.getRfc());
         estatusTxtView.setText(prospecto.getEstatus());
         observTextView.setText(prospecto.getObservaciones());
+        bundle.clear();
+
     }
 }

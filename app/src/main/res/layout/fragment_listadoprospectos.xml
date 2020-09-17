@@ -34,12 +34,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/cardSearchView"/>
 
-    <Button
-        android:id="@+id/buttonNextFrag"
-        android:layout_margin="30dp"
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/nuevoProspectoBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Next Fragment"
+        android:layout_margin="20dp"
+        android:src="@drawable/outline_add_black_18dp"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 

@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.josevalenzuela.prospectosconcreditoapp.Presenter.ListadoProspectosPresenter;
 import com.josevalenzuela.prospectosconcreditoapp.R;
 import com.josevalenzuela.prospectosconcreditoapp.adapters.ProspectoAdapter;
@@ -31,6 +32,7 @@ public class ListadoProspectosFragment extends Fragment implements ListadoProspe
     private Fragment infoProspectoFragment;
     private List<Prospecto> prospectos;
     private ProspectoAdapter prospectoAdapter;
+    private FloatingActionButton addProspectoBtn;
 
     public ListadoProspectosFragment() {
         // Required empty public constructor
@@ -42,24 +44,14 @@ public class ListadoProspectosFragment extends Fragment implements ListadoProspe
         View fragmentView = inflater.inflate(R.layout.fragment_listadoprospectos, container, false);
         this.recyclerViewProspecto = fragmentView.findViewById(R.id.recyclerProspectoViewId);
         this.infoProspectoFragment = new InfoProspectoFragment();
+        this.addProspectoBtn = fragmentView.findViewById(R.id.nuevoProspectoBtn);
+
         presenter = new ListadoProspectosPresenter(this);
         presenter.obtenerProspectos();
 
-        Button button = fragmentView.findViewById(R.id.buttonNextFrag);
-
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Bundle bundle = new Bundle();
-                Prospecto prospecto = prospectos.get(0);
-                bundle.putSerializable("prospectoSeleccionado", prospecto);
-                infoProspectoFragment.setArguments(bundle);
 
 
-                getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null)
-                        .replace(R.id.contenedorFragmentos, infoProspectoFragment).commit();
-            }
-        });
+
         // Inflate the layout for this fragment
         return fragmentView;
     }
@@ -87,10 +79,11 @@ public class ListadoProspectosFragment extends Fragment implements ListadoProspe
     @Override
     public void mostrarListaProspectos(List<Prospecto> prospectos) {
         this.prospectos = prospectos;
-        prospectoAdapter = new ProspectoAdapter(prospectos, mContext, this);
+        prospectoAdapter = new ProspectoAdapter(prospectos, mContext, this::onItemClick);
 
         recyclerViewProspecto.setAdapter(prospectoAdapter);
         recyclerViewProspecto.setLayoutManager(new LinearLayoutManager(mContext));
+
     }
 
     @Override
@@ -99,7 +92,13 @@ public class ListadoProspectosFragment extends Fragment implements ListadoProspe
     }
 
     @Override
-    public void onClickItem(int position) {
-        Toast.makeText(getContext(), "Clicked", Toast.LENGTH_LONG).show();
+    public void onItemClick(int position) {
+        Bundle bundle = new Bundle();
+        Prospecto prospecto = prospectos.get(position);
+        bundle.putSerializable("prospectoSeleccionado", prospecto);
+        infoProspectoFragment.setArguments(bundle);
+
+        getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null)
+                .replace(R.id.contenedorFragmentos, infoProspectoFragment).commit();
     }
 }

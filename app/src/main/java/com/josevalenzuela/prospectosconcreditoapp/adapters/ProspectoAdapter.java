@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.josevalenzuela.prospectosconcreditoapp.R;
 import com.josevalenzuela.prospectosconcreditoapp.models.Prospecto;
 
@@ -21,19 +22,19 @@ import java.util.List;
 public class ProspectoAdapter extends RecyclerView.Adapter<ProspectoAdapter.ProspectosViewHolder> {
     private List<Prospecto> prospectosList;
     private Context context;
-    private OnItemClickListener onItemClickListener;
+    private OnItemClickListener clickListener;
 
-    public ProspectoAdapter(List<Prospecto> prospectosList, Context context, OnItemClickListener onItemClickListener) {
+    public ProspectoAdapter(List<Prospecto> prospectosList, Context context, OnItemClickListener clickListener) {
         this.prospectosList = prospectosList;
         this.context = context;
-        this.onItemClickListener = onItemClickListener;
+        this.clickListener = clickListener;
     }
 
     @NonNull
     @Override
     public ProspectosViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.prospecto_list_item, parent, false);
-        ProspectosViewHolder prospectosViewHolder = new ProspectosViewHolder(view, onItemClickListener);
+        ProspectosViewHolder prospectosViewHolder = new ProspectosViewHolder(view);
         return prospectosViewHolder;
     }
 
@@ -57,7 +58,7 @@ public class ProspectoAdapter extends RecyclerView.Adapter<ProspectoAdapter.Pros
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                clickListener.onItemClick(position);
             }
         });
 
@@ -70,29 +71,23 @@ public class ProspectoAdapter extends RecyclerView.Adapter<ProspectoAdapter.Pros
     }
 
 
-    public static class ProspectosViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public static class ProspectosViewHolder extends RecyclerView.ViewHolder {
 
         private TextView nombreTxtview, estatusTxtView;
         private CardView cardView;
         private LinearLayout linearLayout;
-        private OnItemClickListener onItemClickListener;
-
-        public ProspectosViewHolder(@NonNull View itemView, OnItemClickListener onItemClickListener) {
+        private OnItemClickListener clickListener;
+        public ProspectosViewHolder(@NonNull View itemView) {
             super(itemView);
+
             this.nombreTxtview = itemView.findViewById(R.id.idNombreTxtView);
             this.estatusTxtView = itemView.findViewById(R.id.estatusIdTxtView);
             this.cardView = itemView.findViewById(R.id.cardViewId);
             this.linearLayout = itemView.findViewById(R.id.layoutStatusColorId);
-            this.onItemClickListener = onItemClickListener;
-        }
-
-        @Override
-        public void onClick(View v) {
-            onItemClickListener.onClickItem(getAdapterPosition());
         }
     }
 
     public interface OnItemClickListener{
-        void onClickItem(int position);
+        void onItemClick(int position);
     }
 }
