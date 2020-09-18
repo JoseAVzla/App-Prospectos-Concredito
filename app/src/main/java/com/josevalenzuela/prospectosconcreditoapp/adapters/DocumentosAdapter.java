@@ -36,7 +36,7 @@ public class DocumentosAdapter extends RecyclerView.Adapter<DocumentosAdapter.Do
     public void onBindViewHolder(@NonNull DocumentosViewHolder holder, int position) {
         System.out.println("Glide testing");
         Glide.with(mContext)
-            .load(ulrs.get(position))
+            .load("gs://app-prospectos.appspot.com/410.png")
             .placeholder(R.drawable.ic_baseline_photo_camera_24)
             .error(R.drawable.ic_baseline_broken_image_24)
             .override(200, 200)
