@@ -8,6 +8,7 @@
     tools:context=".View.ListadoProspectosFragment">
 
     <androidx.cardview.widget.CardView
+        android:layout_marginTop="10dp"
         android:id="@+id/cardSearchView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -17,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.appcompat.widget.SearchView
-            android:id="@+id/searchView"
+            android:id="@+id/searchViewProspectosId"
             android:layout_width="match_parent"
             app:iconifiedByDefault="false"
             android:layout_height="match_parent"

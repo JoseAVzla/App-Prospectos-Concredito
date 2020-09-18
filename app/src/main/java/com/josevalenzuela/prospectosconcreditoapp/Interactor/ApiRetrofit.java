@@ -9,7 +9,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiRetrofit {
     private static ApiRetrofit instance = null;
-    public static final String BASE_URL = "http://192.168.0.10:8090/prospectos/api/";
+    public static final String BASE_URL = "http://192.168.0.2:8090/prospectos/api/";
 
     private JsonHolderApi holderApi;
 

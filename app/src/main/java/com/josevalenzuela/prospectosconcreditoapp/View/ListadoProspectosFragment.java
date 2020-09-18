@@ -5,11 +5,14 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -33,6 +36,7 @@ public class ListadoProspectosFragment extends Fragment implements ListadoProspe
     private List<Prospecto> prospectos;
     private ProspectoAdapter prospectoAdapter;
     private FloatingActionButton addProspectoBtn;
+    private androidx.appcompat.widget.SearchView prospectosSearch;
 
     public ListadoProspectosFragment() {
         // Required empty public constructor
@@ -47,6 +51,8 @@ public class ListadoProspectosFragment extends Fragment implements ListadoProspe
         this.agregarProspectoFragment = new AgegarProspectoFragmet();
         this.evaluarProspectoFragment = new EvaluarProspectoFragment();
         this.addProspectoBtn = fragmentView.findViewById(R.id.nuevoProspectoBtn);
+        this.prospectosSearch = fragmentView.findViewById(R.id.searchViewProspectosId);
+
 
         presenter = new ListadoProspectosPresenter(this);
         presenter.obtenerProspectos();
@@ -61,16 +67,26 @@ public class ListadoProspectosFragment extends Fragment implements ListadoProspe
         });
 
 
+
+        prospectosSearch.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                if (!newText.isEmpty()){
+                    prospectoAdapter.getFilter().filter(newText);
+                }
+                return true;
+            }
+        });
+
+
         getActivity().setTitle("Prospectos");
         // Inflate the layout for this fragment
         return fragmentView;
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
-
     }
 
     @Override
@@ -93,6 +109,7 @@ public class ListadoProspectosFragment extends Fragment implements ListadoProspe
 
         recyclerViewProspecto.setAdapter(prospectoAdapter);
         recyclerViewProspecto.setLayoutManager(new LinearLayoutManager(mContext));
+        prospectosSearch.setQuery("", false);
 
     }
 

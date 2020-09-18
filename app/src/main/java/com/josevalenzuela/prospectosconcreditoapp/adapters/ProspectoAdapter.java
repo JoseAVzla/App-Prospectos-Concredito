@@ -1,32 +1,35 @@
 package com.josevalenzuela.prospectosconcreditoapp.adapters;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.josevalenzuela.prospectosconcreditoapp.R;
 import com.josevalenzuela.prospectosconcreditoapp.models.Prospecto;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
-public class ProspectoAdapter extends RecyclerView.Adapter<ProspectoAdapter.ProspectosViewHolder> {
+public class ProspectoAdapter extends RecyclerView.Adapter<ProspectoAdapter.ProspectosViewHolder> implements Filterable {
     private List<Prospecto> prospectosList;
+    private List<Prospecto> prospectosListCompleta;
     private Context context;
     private OnItemClickListener clickListener;
 
     public ProspectoAdapter(List<Prospecto> prospectosList, Context context, OnItemClickListener clickListener) {
         this.prospectosList = prospectosList;
+        this.prospectosListCompleta = new ArrayList<>(prospectosList);
         this.context = context;
         this.clickListener = clickListener;
     }
@@ -70,6 +73,41 @@ public class ProspectoAdapter extends RecyclerView.Adapter<ProspectoAdapter.Pros
     public int getItemCount() {
         return prospectosList.size();
     }
+
+    @Override
+    public Filter getFilter() {
+        return filter;
+    }
+    Filter filter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence charSequence) {
+            String charString = charSequence.toString();
+            List<Prospecto> listaFiltrada = new ArrayList<>();
+            if (charString.isEmpty()) {
+                listaFiltrada.addAll(prospectosListCompleta);
+            } else {
+                for (Prospecto prospecto : prospectosListCompleta) {
+                    String nombre = prospecto.getNombre() + " " + prospecto.getPrimerApellido() + " " + prospecto.getSegundoApellido();
+                    if (nombre.toLowerCase().contains(charSequence.toString().toLowerCase())) {
+                        listaFiltrada.add(prospecto);
+                    }
+                }
+
+
+            }
+
+            FilterResults resultado = new FilterResults();
+            resultado.values = listaFiltrada;
+            return resultado;
+        }
+
+        @Override
+        protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+            prospectosList.clear();
+            prospectosList.addAll((Collection<? extends Prospecto>) filterResults.values);
+            notifyDataSetChanged();
+        }
+    };
 
 
     public static class ProspectosViewHolder extends RecyclerView.ViewHolder {
