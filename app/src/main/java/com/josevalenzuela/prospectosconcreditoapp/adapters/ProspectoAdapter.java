@@ -59,11 +59,7 @@ public class ProspectoAdapter extends RecyclerView.Adapter<ProspectoAdapter.Pros
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-<<<<<<< HEAD
-                clickListener.onItemClick(position);
-=======
-                Toast.makeText(context, prospecto.getEstatus(), Toast.LENGTH_LONG).show();
->>>>>>> feature/AgregarProspecto
+
             }
         });
 
