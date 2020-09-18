@@ -14,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
@@ -33,11 +34,15 @@ public class EvaluarProspectoFragment extends Fragment implements EvaluarProspec
     private TextView nombreTxtView, direccionTxtView, telefonoTxtView, rfcTextView;
     private String estatusSeleccionado = "";
     private TextInputLayout observacionesLayout;
-    private EvaluarProspectoContract.Presenter presenter;
+    private Spinner spinner;
     private FloatingActionButton evaluarBtn;
+
+    private EvaluarProspectoContract.Presenter presenter;
     private Prospecto prospectoEvaluado;
+    private Fragment listadoFragment;
+
+
     public EvaluarProspectoFragment() {
-        // Required empty public constructor
     }
 
     @Override
@@ -56,13 +61,13 @@ public class EvaluarProspectoFragment extends Fragment implements EvaluarProspec
         observacionesEditTxt = view.findViewById(R.id.observacionesEditText);
         observacionesLayout = view.findViewById(R.id.observacionesTextLayout);
         evaluarBtn = view.findViewById(R.id.evaluarBtnId);
-
+        listadoFragment = new ListadoProspectosFragment();
 
         presenter =  new EvaluarProspectoPresenter(this);
 
 
         //Sipnner para seleccionar el estatus del prospecto a evaluar
-        Spinner spinner = (Spinner) view.findViewById(R.id.estatusSpinnerId);
+        spinner = (Spinner) view.findViewById(R.id.estatusSpinnerId);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(),
                 R.array.estatus, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -105,22 +110,24 @@ public class EvaluarProspectoFragment extends Fragment implements EvaluarProspec
 
     @Override
     public void mostrarEvaluacionSucces(String mensajeExito) {
-
+        Toast.makeText(getContext(), mensajeExito, Toast.LENGTH_LONG).show();
+        getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null)
+                .replace(R.id.contenedorFragmentos, listadoFragment).commit();
     }
 
     @Override
     public void mostrarEvalucionError(String mensajeError) {
-
+        Toast.makeText(getContext(), mensajeError, Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void mostrarEstatusError(String error) {
-
+        Toast.makeText(getContext(), error, Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void mostrarObservacionesError(String error) {
-
+        observacionesEditTxt.setError(error);
     }
     //Estatus por defecto en AUTORIZADO, la casilla de observaciones se queda deshabilitada hasta que se se
     // seleccione RECHAZADO en el spinner
