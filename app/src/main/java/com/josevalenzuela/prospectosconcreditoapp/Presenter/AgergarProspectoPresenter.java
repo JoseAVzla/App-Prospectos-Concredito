@@ -1,5 +1,7 @@
 package com.josevalenzuela.prospectosconcreditoapp.Presenter;
 
+import android.graphics.Bitmap;
+
 import com.josevalenzuela.prospectosconcreditoapp.DTO.ProspectoRequestDTO;
 import com.josevalenzuela.prospectosconcreditoapp.Interactor.AgregarProspectoInteractor;
 import com.josevalenzuela.prospectosconcreditoapp.contracts.AgregarProspectoContract;
@@ -10,7 +12,7 @@ import java.util.List;
 public class AgergarProspectoPresenter implements AgregarProspectoContract.Presenter, AgregarProspectoContract.CompleteListener {
     private AgregarProspectoContract.View view;
     private AgregarProspectoContract.Interactor interactor;
-
+    private ProspectoRequestDTO prospecto;
 
     public AgergarProspectoPresenter(AgregarProspectoContract.View view) {
         this.view = view;
@@ -19,8 +21,8 @@ public class AgergarProspectoPresenter implements AgregarProspectoContract.Prese
 
 
     @Override
-    public void agregarProspecto(List<String> documentos, String nombre, String primerApellido, String segundoApellido, String calle, String numero, String colonia, String codigoPostal, String telefono, String rfc) {
-        ProspectoRequestDTO prospecto = new ProspectoRequestDTO();
+    public void agregarProspecto(List<Bitmap> documentos, String nombre, String primerApellido, String segundoApellido, String calle, String numero, String colonia, String codigoPostal, String telefono, String rfc) {
+        prospecto = new ProspectoRequestDTO();
         prospecto.setNombre(nombre);
         prospecto.setPrimerApellido(primerApellido);
         prospecto.setSegundoApellido(segundoApellido);
@@ -31,9 +33,9 @@ public class AgergarProspectoPresenter implements AgregarProspectoContract.Prese
         prospecto.setRfc(rfc);
         prospecto.setNumero(numero);
         prospecto.setTelefono(telefono);
-        prospecto.setDocumentosEncoded(documentos);
-        interactor.guardarProspecto(prospecto);
+        interactor.guardarProspecto(prospecto, documentos);
     }
+
 
     @Override
     public boolean validarFormulario(String nombre, String primerApellido, String segundoApellido, String calle, String numero, String colonia, String codigoPostal, String telefono, String rfc) {

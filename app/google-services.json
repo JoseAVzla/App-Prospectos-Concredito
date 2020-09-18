@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "32667891060",
+    "firebase_url": "https://app-prospectos.firebaseio.com",
+    "project_id": "app-prospectos",
+    "storage_bucket": "app-prospectos.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:32667891060:android:fee1c0e9502e7a47366821",
+        "android_client_info": {
+          "package_name": "com.josevalenzuela.prospectosconcreditoapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "32667891060-n0qagsacsqfeej0kkfkftsmem1k7ht4r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDg_0WduI42rxVK_eQtfmd01-Sei1FR_ek"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "32667891060-n0qagsacsqfeej0kkfkftsmem1k7ht4r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

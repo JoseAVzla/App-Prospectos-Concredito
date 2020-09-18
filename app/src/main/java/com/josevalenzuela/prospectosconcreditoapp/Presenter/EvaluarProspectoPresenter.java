@@ -28,7 +28,7 @@ public class EvaluarProspectoPresenter implements EvaluarProspectoContract.Prese
         requestDTO.setRfc(prospecto.getRfc());
         requestDTO.setNumero(prospecto.getNumero());
         requestDTO.setTelefono(prospecto.getTelefono());
-        requestDTO.setDocumentosEncoded(prospecto.getDocumetosUrl());
+        requestDTO.setDocumentosUrl(prospecto.getDocumetosUrl());
         requestDTO.setObservaciones(observaciones);
         interactor.actualizarEstadoProspecto(requestDTO);
     }

@@ -1,5 +1,6 @@
 package com.josevalenzuela.prospectosconcreditoapp.contracts;
 
+import android.graphics.Bitmap;
 import android.net.Uri;
 
 import com.josevalenzuela.prospectosconcreditoapp.DTO.ProspectoRequestDTO;
@@ -24,12 +25,13 @@ public interface AgregarProspectoContract {
     }
 
     interface Presenter{
-        void agregarProspecto(List<String> documentos, String nombre, String primerApellido, String segundoApellido, String calle, String numero, String colonia, String codigoPostal, String telefono, String rfc);
+        void agregarProspecto(List<Bitmap> documentos, String nombre, String primerApellido, String segundoApellido, String calle, String numero, String colonia, String codigoPostal, String telefono, String rfc);
         boolean validarFormulario(String nombre, String primerApellido, String segundoApellido, String calle, String numero, String colonia, String codigoPostal, String telefono, String rfc);
     }
 
     interface Interactor{
-        void guardarProspecto(ProspectoRequestDTO prospecto);
+        void guardarProspecto(ProspectoRequestDTO prospecto, List<Bitmap> docs);
+        ProspectoRequestDTO saveDocsOnFirestore(List<Bitmap> docs, ProspectoRequestDTO prospectoRequestDTO);
     }
 
     interface CompleteListener{

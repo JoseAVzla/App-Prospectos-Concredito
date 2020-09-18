@@ -1,5 +1,7 @@
 package com.josevalenzuela.prospectosconcreditoapp.Interactor;
 
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.josevalenzuela.prospectosconcreditoapp.DTO.ProspectoRequestDTO;
 import com.josevalenzuela.prospectosconcreditoapp.contracts.EvaluarProspectoContract;
 import com.josevalenzuela.prospectosconcreditoapp.models.Prospecto;

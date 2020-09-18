@@ -6,7 +6,6 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 public class ProspectoRequestDTO {
-    @SerializedName("prospectoId") @Expose
     private int prospectoId;
     @SerializedName("nombre") @Expose private String nombre;
     @SerializedName("primerApellido") @Expose private String primerApellido;
@@ -19,14 +18,14 @@ public class ProspectoRequestDTO {
     @SerializedName("rfc") @Expose private String rfc;
     @SerializedName("estatus") @Expose private String estatus;
     @SerializedName("observaciones") @Expose private String observaciones;
-    @SerializedName("documentosEncoded") @Expose private List<String> documentosEncoded;
+    @SerializedName("documentosUrl") @Expose private List<String> documentosUrl;
 
-    public List<String> getDocumentosEncoded() {
-        return documentosEncoded;
+    public List<String> getDocumentosUrl() {
+        return documentosUrl;
     }
 
-    public void setDocumentosEncoded(List<String> documentosEncoded) {
-        this.documentosEncoded = documentosEncoded;
+    public void setDocumentosUrl(List<String> documentosEncoded) {
+        this.documentosUrl = documentosEncoded;
     }
 
     public ProspectoRequestDTO() {

@@ -1,8 +1,18 @@
 package com.josevalenzuela.prospectosconcreditoapp.Interactor;
 
+import android.graphics.Bitmap;
+
+import androidx.annotation.NonNull;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.josevalenzuela.prospectosconcreditoapp.contracts.ListadoProspectosContract;
 import com.josevalenzuela.prospectosconcreditoapp.models.Prospecto;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +31,6 @@ public class ListadoProspectosInteractor implements ListadoProspectosContract.In
 
     @Override
     public void obtenerTodosProspectos() {
-
         prospectosList = new ArrayList<>();
 
         JsonHolderApi holderApi = ApiRetrofit.getInstance().getHolderApi();
