@@ -29,7 +29,7 @@ public class ListadoProspectosFragment extends Fragment implements ListadoProspe
     private ListadoProspectosContract.Presenter presenter;
     private RecyclerView recyclerViewProspecto;
     private Context mContext;
-    private Fragment infoProspectoFragment;
+    private Fragment infoProspectoFragment, agregarProspectoFragment;
     private List<Prospecto> prospectos;
     private ProspectoAdapter prospectoAdapter;
     private FloatingActionButton addProspectoBtn;
@@ -44,14 +44,31 @@ public class ListadoProspectosFragment extends Fragment implements ListadoProspe
         View fragmentView = inflater.inflate(R.layout.fragment_listadoprospectos, container, false);
         this.recyclerViewProspecto = fragmentView.findViewById(R.id.recyclerProspectoViewId);
         this.infoProspectoFragment = new InfoProspectoFragment();
+<<<<<<< HEAD
+=======
+        this.agregarProspectoFragment = new AgegarProspectoFragmet();
+>>>>>>> feature/AgregarProspecto
         this.addProspectoBtn = fragmentView.findViewById(R.id.nuevoProspectoBtn);
 
         presenter = new ListadoProspectosPresenter(this);
         presenter.obtenerProspectos();
 
+<<<<<<< HEAD
 
 
 
+=======
+        addProspectoBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null)
+                        .replace(R.id.contenedorFragmentos, agregarProspectoFragment).commit();
+            }
+        });
+
+
+>>>>>>> feature/AgregarProspecto
         // Inflate the layout for this fragment
         return fragmentView;
     }

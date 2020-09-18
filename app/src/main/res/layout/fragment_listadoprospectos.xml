@@ -40,7 +40,10 @@
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:src="@drawable/outline_add_black_18dp"
+<<<<<<< HEAD
 
+=======
+>>>>>>> feature/AgregarProspecto
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 

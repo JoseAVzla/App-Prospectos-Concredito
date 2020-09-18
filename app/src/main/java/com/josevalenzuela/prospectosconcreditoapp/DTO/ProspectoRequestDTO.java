@@ -1,13 +1,13 @@
-package com.josevalenzuela.prospectosconcreditoapp.models;
+package com.josevalenzuela.prospectosconcreditoapp.DTO;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.io.Serializable;
 import java.util.List;
 
-public class Prospecto implements Serializable {
-    @SerializedName("prospectoId") @Expose private int prospectoId;
+public class ProspectoRequestDTO {
+    @SerializedName("prospectoId") @Expose
+    private int prospectoId;
     @SerializedName("nombre") @Expose private String nombre;
     @SerializedName("primerApellido") @Expose private String primerApellido;
     @SerializedName("segundoApellido") @Expose private String segundoApellido;
@@ -19,21 +19,21 @@ public class Prospecto implements Serializable {
     @SerializedName("rfc") @Expose private String rfc;
     @SerializedName("estatus") @Expose private String estatus;
     @SerializedName("observaciones") @Expose private String observaciones;
-    @SerializedName("documentosUrl") @Expose private List<String> documetosUrl;
+    @SerializedName("documentosEncoded") @Expose private List<String> documentosEncoded;
 
-    public List<String> getDocumetosUrl() {
-        return documetosUrl;
+    public List<String> getDocumentosEncoded() {
+        return documentosEncoded;
     }
 
-    public void setDocumetosUrl(List<String> documetosUrl) {
-        this.documetosUrl = documetosUrl;
+    public void setDocumentosEncoded(List<String> documentosEncoded) {
+        this.documentosEncoded = documentosEncoded;
     }
 
-    public Prospecto() {
+    public ProspectoRequestDTO() {
 
     }
 
-    public Prospecto(int prospectoId, String nombre, String primerApellido, String segundoApellido, String calle, String numero, String colonia, String codigoPostal, String telefono, String rfc, String estatus, String observaciones) {
+    public ProspectoRequestDTO(int prospectoId, String nombre, String primerApellido, String segundoApellido, String calle, String numero, String colonia, String codigoPostal, String telefono, String rfc, String estatus, String observaciones) {
         this.prospectoId = prospectoId;
         this.nombre = nombre;
         this.primerApellido = primerApellido;
@@ -143,5 +143,6 @@ public class Prospecto implements Serializable {
     public void setObservaciones(String observaciones) {
         this.observaciones = observaciones;
     }
+
 
 }
