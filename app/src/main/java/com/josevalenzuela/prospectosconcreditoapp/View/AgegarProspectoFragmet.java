@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.provider.MediaStore;
 import android.util.Base64;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,7 @@ import android.widget.Adapter;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
@@ -36,7 +38,10 @@ import com.josevalenzuela.prospectosconcreditoapp.models.Prospecto;
 import org.w3c.dom.Text;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -48,12 +53,16 @@ public class AgegarProspectoFragmet extends Fragment implements AgregarProspecto
     private int docIndex = 0;
     private Uri img_uri;
     private List<Uri> uris;
-
+    private List<String> docsEncodedList;
     private AgregarProspectoContract.Presenter presenter;
+    private Fragment lsitadoFragment;
     //componentes iterfaz
     private TextInputEditText nombreEditTxt, primerAppEditTxt, segundoAppEditTxt, telefonoEditTxt, rfcEditTxt, coloniaEditTxt, calleEditTxt, numeroEditTxt, codigoPostalEditTxt;
     private RecyclerView recyclerView;
+    private LinearLayout layoutAddDoc;
     private ImageView enviarBtn;
+    private final int REQUEST_CODE = 1;
+
 
     public AgegarProspectoFragmet() {
         // Required empty public constructor
@@ -66,6 +75,7 @@ public class AgegarProspectoFragmet extends Fragment implements AgregarProspecto
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_agegar_prospecto, container, false);
         uris = new ArrayList<>();
+        docsEncodedList = new ArrayList<>();
         recyclerView = view.findViewById(R.id.recyclerViewAgregarDocs);
         imageView = view.findViewById(R.id.agregarDocId);
 
@@ -79,10 +89,13 @@ public class AgegarProspectoFragmet extends Fragment implements AgregarProspecto
         codigoPostalEditTxt = view.findViewById(R.id.nuevoProspectoCodPostalId);
         numeroEditTxt = view.findViewById(R.id.nuevoProspectoNumeroCasaId);
         enviarBtn = view.findViewById(R.id.saveProspectoId);
+        layoutAddDoc = view.findViewById(R.id.recyclerProspectoViewId);
 
         presenter = new AgergarProspectoPresenter(this);
+        lsitadoFragment = new ListadoProspectosFragment();
 
 
+        //Validar formulario y agregar prospecto
         enviarBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -91,10 +104,10 @@ public class AgegarProspectoFragmet extends Fragment implements AgregarProspecto
                         calleEditTxt.getText().toString(), numeroEditTxt.getText().toString(), coloniaEditTxt.getText().toString(),
                         codigoPostalEditTxt.getText().toString(), telefonoEditTxt.getText().toString(), rfcEditTxt.getText().toString()
                 )){
+                        presenter.agregarProspecto(docsEncodedList, nombreEditTxt.getText().toString(), primerAppEditTxt.getText().toString(), segundoAppEditTxt.getText().toString(),
+                                calleEditTxt.getText().toString(), numeroEditTxt.getText().toString(), coloniaEditTxt.getText().toString(),
+                                codigoPostalEditTxt.getText().toString(), telefonoEditTxt.getText().toString(), rfcEditTxt.getText().toString());
 
-                    presenter.agregarProspecto(uris, nombreEditTxt.getText().toString(), primerAppEditTxt.getText().toString(), segundoAppEditTxt.getText().toString(),
-                            calleEditTxt.getText().toString(), numeroEditTxt.getText().toString(), coloniaEditTxt.getText().toString(),
-                            codigoPostalEditTxt.getText().toString(), telefonoEditTxt.getText().toString(), rfcEditTxt.getText().toString());
                 }
             }
         });
@@ -102,18 +115,18 @@ public class AgegarProspectoFragmet extends Fragment implements AgregarProspecto
 
 
 
-
+        //Agregar documento
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 imageView.setColorFilter(getResources().getColor(R.color.colorAccent));
-                ContentValues contentValues = new ContentValues();
+/*                ContentValues contentValues = new ContentValues();
                 contentValues.put(MediaStore.Images.Media.TITLE, "Photodocs" + docIndex);
-                img_uri = getContext().getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues);
+                img_uri = getContext().getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues);*/
                 Intent camara = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                camara.putExtra(MediaStore.EXTRA_OUTPUT,img_uri);
+                /*camara.putExtra(MediaStore.EXTRA_OUTPUT,img_uri);*/
                 if (camara.resolveActivity(getContext().getPackageManager()) != null) {
-                    startActivityForResult(camara, 1);
+                    startActivityForResult(camara, REQUEST_CODE);
                 }
                 docIndex++;
             }
@@ -134,13 +147,27 @@ public class AgegarProspectoFragmet extends Fragment implements AgregarProspecto
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        uris.add(img_uri);
+
+
+        if (REQUEST_CODE == requestCode){
+            assert data != null;
+            Bitmap photo = (Bitmap) data.getExtras().get("data");
+            ByteArrayOutputStream bos = new ByteArrayOutputStream();
+            photo.compress(Bitmap.CompressFormat.PNG,40,bos);
+            byte[] bb = bos.toByteArray();
+            String encode = Base64.encodeToString(bb, Base64.DEFAULT);
+            docsEncodedList.add(encode);
+            uris.add(img_uri);
+        }
+
         addDoc();
     }
 
     @Override
-    public void prospectoAgregadoSucces() {
-
+    public void prospectoAgregadoSucces(Prospecto prospecto) {
+        Toast.makeText(getContext(), prospecto.getNombre() + " agregado satisfactoriamente", Toast.LENGTH_LONG).show();
+        getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null)
+                .replace(R.id.contenedorFragmentos, lsitadoFragment).commit();
     }
 
     @Override
@@ -190,6 +217,8 @@ public class AgegarProspectoFragmet extends Fragment implements AgregarProspecto
 
     @Override
     public void mostrarAgregarProspectoError(String error) {
-
+        Toast.makeText(getContext(), error, Toast.LENGTH_LONG).show();
+        getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null)
+                .replace(R.id.contenedorFragmentos, lsitadoFragment).commit();
     }
 }

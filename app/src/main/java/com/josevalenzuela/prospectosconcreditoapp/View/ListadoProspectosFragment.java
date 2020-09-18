@@ -53,10 +53,6 @@ public class ListadoProspectosFragment extends Fragment implements ListadoProspe
         addProspectoBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Bundle bundle = new Bundle();
-                Prospecto prospecto = prospectos.get(0);
-                bundle.putSerializable("prospectoSeleccionado", prospecto);
-                agregarProspectoFragment.setArguments(bundle);
 
                 getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null)
                         .replace(R.id.contenedorFragmentos, agregarProspectoFragment).commit();

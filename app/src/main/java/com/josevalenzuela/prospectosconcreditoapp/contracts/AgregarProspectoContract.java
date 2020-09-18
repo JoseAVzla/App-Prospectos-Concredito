@@ -2,13 +2,15 @@ package com.josevalenzuela.prospectosconcreditoapp.contracts;
 
 import android.net.Uri;
 
+import com.josevalenzuela.prospectosconcreditoapp.DTO.ProspectoRequestDTO;
 import com.josevalenzuela.prospectosconcreditoapp.models.Prospecto;
 
+import java.io.IOException;
 import java.util.List;
 
 public interface AgregarProspectoContract {
     interface View{
-        void prospectoAgregadoSucces();
+        void prospectoAgregadoSucces(Prospecto prospecto);
         void mostrarErrorNombre(String error);
         void mostrarErrorAppPaterno(String error);
         void mostrarErrorAppMaterno(String error);
@@ -22,12 +24,12 @@ public interface AgregarProspectoContract {
     }
 
     interface Presenter{
-        void agregarProspecto(List<Uri> documentos, String nombre, String primerApellido, String segundoApellido, String calle, String numero, String colonia, String codigoPostal, String telefono, String rfc);
+        void agregarProspecto(List<String> documentos, String nombre, String primerApellido, String segundoApellido, String calle, String numero, String colonia, String codigoPostal, String telefono, String rfc);
         boolean validarFormulario(String nombre, String primerApellido, String segundoApellido, String calle, String numero, String colonia, String codigoPostal, String telefono, String rfc);
     }
 
     interface Interactor{
-        void guardarProspecto(Prospecto prospecto);
+        void guardarProspecto(ProspectoRequestDTO prospecto);
     }
 
     interface CompleteListener{

@@ -1,5 +1,7 @@
 package com.josevalenzuela.prospectosconcreditoapp.adapters;
 
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +13,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.josevalenzuela.prospectosconcreditoapp.R;
 
+import java.io.ByteArrayOutputStream;
+import java.util.Base64;
 import java.util.List;
 
 public class DocumentosAdapter extends RecyclerView.Adapter<DocumentosAdapter.DocumentosViewHolder> {

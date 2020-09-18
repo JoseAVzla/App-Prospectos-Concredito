@@ -1,5 +1,6 @@
 package com.josevalenzuela.prospectosconcreditoapp.Interactor;
 
+import com.josevalenzuela.prospectosconcreditoapp.DTO.ProspectoRequestDTO;
 import com.josevalenzuela.prospectosconcreditoapp.models.Prospecto;
 
 import java.util.List;
@@ -15,5 +16,5 @@ public interface JsonHolderApi {
     Call<List<Prospecto>> getProspectos();
 
     @POST("prospectos/save")
-    Call<Prospecto> guardarProspecto(@Body Prospecto prospecto);
+    Call<Prospecto> guardarProspecto(@Body ProspectoRequestDTO prospecto);
 }

@@ -9,179 +9,193 @@
     android:layout_height="match_parent"
     android:fillViewport="true">
 
-    <ImageView
-        android:id="@+id/infoPros"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:src="@drawable/ic_baseline_person_24"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/idNombreTxtView"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        app:layout_constraintTop_toBottomOf="@id/infoPros"
-        android:hint="Nombre">
+        app:layout_constraintTop_toTopOf="parent">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/nuevoProspectoNombreId"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_height="match_parent">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/appPaternoLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:hint="Primer apellido"
-        app:layout_constraintTop_toBottomOf="@id/idNombreTxtView">
+            <ImageView
+                android:id="@+id/infoPros"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_baseline_person_24"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/nuevoProspectoAppPaternoETxtId"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/idNombreTxtView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:hint="Nombre"
+                app:layout_constraintTop_toBottomOf="@id/infoPros">
 
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/nuevoProspectoNombreId"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-    </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/appPaternoLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:hint="Primer apellido"
+                app:layout_constraintTop_toBottomOf="@id/idNombreTxtView">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/idSegundoAppTxtView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        app:layout_constraintTop_toBottomOf="@id/appPaternoLayout"
-        android:hint="Segundo apellido">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/nuevoProspectoAppMaternoId"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/rfcLayout"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:hint="RFC"
-        android:layout_marginLeft="20dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/idSegundoAppTxtView">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/nuevoProspectoRfcId"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="20dp"
-        android:hint="Telefono"
-        app:layout_constraintLeft_toRightOf="@+id/rfcLayout"
-        app:layout_constraintTop_toBottomOf="@id/idSegundoAppTxtView">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/nuevoProspectoTelefonoId"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <ImageView
-        android:id="@+id/saveProspectoId"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_baseline_add_location_24"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/rfcLayout" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/nuevoProspectoAppPaternoETxtId"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
 
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/calleLayoutId"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:hint="Calle"
-        app:layout_constraintTop_toBottomOf="@id/saveProspectoId">
+            </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/nuevoProspectoCalleId"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/idSegundoAppTxtView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:hint="Segundo apellido"
+                app:layout_constraintTop_toBottomOf="@id/appPaternoLayout">
 
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/nuevoProspectoAppMaternoId"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/coloniaLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:hint="Colonia"
-        app:layout_constraintTop_toBottomOf="@id/calleLayoutId">
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/rfcLayout"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:hint="RFC"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/idSegundoAppTxtView">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/nuevoProspectoColoniaId"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/nuevoProspectoRfcId"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </com.google.android.material.textfield.TextInputLayout>
 
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:hint="Telefono"
+                app:layout_constraintLeft_toRightOf="@+id/rfcLayout"
+                app:layout_constraintTop_toBottomOf="@id/idSegundoAppTxtView">
 
-    </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/nuevoProspectoTelefonoId"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/numeroLayout"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:hint="Número"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/coloniaLayout">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/nuevoProspectoNumeroCasaId"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:hint="Código postal"
-        app:layout_constraintTop_toBottomOf="@id/coloniaLayout"
-        app:layout_constraintLeft_toRightOf="@id/numeroLayout">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/nuevoProspectoCodPostalId"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </com.google.android.material.textfield.TextInputLayout>
+            <ImageView
+                android:id="@+id/saveProspectoId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_add_location_24"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rfcLayout" />
 
 
-    <ImageView
-        android:id="@+id/agregarDocId"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:src="@drawable/outline_add_black_18dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/numeroLayout" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/calleLayoutId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:hint="Calle"
+                app:layout_constraintTop_toBottomOf="@id/saveProspectoId">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewAgregarDocs"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/agregarDocId"
-        />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/nuevoProspectoCalleId"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/coloniaLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:hint="Colonia"
+                app:layout_constraintTop_toBottomOf="@id/calleLayoutId">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/nuevoProspectoColoniaId"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/numeroLayout"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:hint="Número"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/coloniaLayout">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/nuevoProspectoNumeroCasaId"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:hint="Código postal"
+                app:layout_constraintLeft_toRightOf="@id/numeroLayout"
+                app:layout_constraintTop_toBottomOf="@id/coloniaLayout">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/nuevoProspectoCodPostalId"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <ImageView
+                android:id="@+id/agregarDocId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/outline_add_black_18dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/numeroLayout" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewAgregarDocs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/agregarDocId" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
