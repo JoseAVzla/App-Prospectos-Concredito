@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".View.EvaluarProspectoFragment"
+    android:id="@+id/scrollView"
+    android:fillViewport="true">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/infoProspectoCardViewId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:elevation="7dp"
+                app:layout_constraintTop_toTopOf="parent">
+                <LinearLayout
+                    android:id="@+id/infoProspectoLinearLayoutId"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Nombre:"
+                            android:textStyle="bold"
+                            android:textSize="20sp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="50dp"
+                            android:text="Dirección:"
+                            android:textStyle="bold"
+                            android:textSize="20sp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Telefono:"
+                            android:textStyle="bold"
+                            android:textSize="20sp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="RFC:"
+                            android:textStyle="bold"
+                            android:textSize="20sp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Estatus:"
+                            android:textStyle="bold"
+                            android:textSize="20sp"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_marginLeft="10dp"
+                            android:id="@+id/evaluarProspectoNombreTextId"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="20sp"/>
+                        <TextView
+                            android:layout_marginLeft="10dp"
+                            android:id="@+id/evalaurDireccionTextId"
+                            android:layout_width="wrap_content"
+                            android:layout_height="50dp"
+                            android:textSize="20sp"/>
+                        <TextView
+                            android:layout_marginLeft="10dp"
+                            android:id="@+id/evaluarTelefonoTextId"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="20sp"/>
+                        <TextView
+                            android:layout_marginLeft="10dp"
+                            android:id="@+id/evaluarRfcTextId"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="20sp"/>
+                        <Spinner
+                            android:layout_marginLeft="10dp"
+                            android:id="@+id/estatusSpinnerId"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_marginTop="20dp"
+                android:id="@+id/observacionesCardView"
+                app:layout_constraintTop_toBottomOf="@+id/infoProspectoCardViewId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:elevation="7dp">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/observacionesTextLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:hint="Observaciones">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/observacionesEditText"
+                        android:layout_marginTop="50dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/evaluarBtnId"
+                app:layout_constraintTop_toBottomOf="@id/observacionesCardView"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="30dp"
+                android:src="@drawable/ic_baseline_check_24"
+                android:text="Evaluar" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardViewRecyclerId"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:elevation="7dp"
+                app:layout_constraintTop_toBottomOf="@id/evaluarBtnId">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerViewDocumentos"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/observacionesCardView" />
+
+
+            </androidx.cardview.widget.CardView>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

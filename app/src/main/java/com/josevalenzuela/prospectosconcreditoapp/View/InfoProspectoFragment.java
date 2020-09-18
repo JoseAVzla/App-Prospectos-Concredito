@@ -35,7 +35,7 @@ public class InfoProspectoFragment extends Fragment {
         assert getArguments() != null;
         setInfo(getArguments());
 
-
+        getActivity().setTitle("Información prospecto");
         return fragmentView;
     }
 

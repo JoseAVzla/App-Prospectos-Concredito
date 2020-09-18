@@ -59,7 +59,7 @@ public class ProspectoAdapter extends RecyclerView.Adapter<ProspectoAdapter.Pros
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                clickListener.onItemClick(position);
             }
         });
 

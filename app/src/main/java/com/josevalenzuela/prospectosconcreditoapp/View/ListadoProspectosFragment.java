@@ -29,7 +29,7 @@ public class ListadoProspectosFragment extends Fragment implements ListadoProspe
     private ListadoProspectosContract.Presenter presenter;
     private RecyclerView recyclerViewProspecto;
     private Context mContext;
-    private Fragment infoProspectoFragment, agregarProspectoFragment;
+    private Fragment infoProspectoFragment, agregarProspectoFragment, evaluarProspectoFragment;
     private List<Prospecto> prospectos;
     private ProspectoAdapter prospectoAdapter;
     private FloatingActionButton addProspectoBtn;
@@ -45,6 +45,7 @@ public class ListadoProspectosFragment extends Fragment implements ListadoProspe
         this.recyclerViewProspecto = fragmentView.findViewById(R.id.recyclerProspectoViewId);
         this.infoProspectoFragment = new InfoProspectoFragment();
         this.agregarProspectoFragment = new AgegarProspectoFragmet();
+        this.evaluarProspectoFragment = new EvaluarProspectoFragment();
         this.addProspectoBtn = fragmentView.findViewById(R.id.nuevoProspectoBtn);
 
         presenter = new ListadoProspectosPresenter(this);
@@ -59,6 +60,8 @@ public class ListadoProspectosFragment extends Fragment implements ListadoProspe
             }
         });
 
+
+        getActivity().setTitle("Prospectos");
         // Inflate the layout for this fragment
         return fragmentView;
     }
@@ -103,9 +106,14 @@ public class ListadoProspectosFragment extends Fragment implements ListadoProspe
         Bundle bundle = new Bundle();
         Prospecto prospecto = prospectos.get(position);
         bundle.putSerializable("prospectoSeleccionado", prospecto);
-        infoProspectoFragment.setArguments(bundle);
-
-        getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null)
-                .replace(R.id.contenedorFragmentos, infoProspectoFragment).commit();
+        if (prospecto.getEstatus().equals("RECHAZADO") || prospecto.getEstatus().equals("AUTORIZADO")){
+            infoProspectoFragment.setArguments(bundle);
+            getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null)
+                    .replace(R.id.contenedorFragmentos, infoProspectoFragment).commit();
+        }else {
+            evaluarProspectoFragment.setArguments(bundle);
+            getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null)
+                    .replace(R.id.contenedorFragmentos, evaluarProspectoFragment).commit();
+        }
     }
 }

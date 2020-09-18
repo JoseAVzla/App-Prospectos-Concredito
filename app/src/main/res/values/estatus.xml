@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="estatus">
+        <item>AUTORIZADO</item>
+        <item>RECHAZADO</item>
+    </string-array>
+</resources>

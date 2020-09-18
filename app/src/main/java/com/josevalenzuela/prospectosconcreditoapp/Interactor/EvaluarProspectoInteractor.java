@@ -1,28 +1,26 @@
 package com.josevalenzuela.prospectosconcreditoapp.Interactor;
 
 import com.josevalenzuela.prospectosconcreditoapp.DTO.ProspectoRequestDTO;
-import com.josevalenzuela.prospectosconcreditoapp.contracts.AgregarProspectoContract;
+import com.josevalenzuela.prospectosconcreditoapp.contracts.EvaluarProspectoContract;
 import com.josevalenzuela.prospectosconcreditoapp.models.Prospecto;
-
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class AgregarProspectoInteractor implements AgregarProspectoContract.Interactor {
+public class EvaluarProspectoInteractor implements EvaluarProspectoContract.Interactor {
+    private EvaluarProspectoContract.CompleteListener listener;
     private Prospecto prospectoRespuesta;
-    private AgregarProspectoContract.CompleteListener listener;
 
-    public AgregarProspectoInteractor(AgregarProspectoContract.CompleteListener listener) {
+    public EvaluarProspectoInteractor(EvaluarProspectoContract.CompleteListener listener) {
         this.listener = listener;
     }
 
     @Override
-    public void guardarProspecto(ProspectoRequestDTO prospecto) {
+    public void actualizarEstadoProspecto(ProspectoRequestDTO prospecto) {
         JsonHolderApi holderApi = ApiRetrofit.getInstance().getHolderApi();
 
-        Call<Prospecto> callAgregarProspecto = holderApi.guardarProspecto(prospecto);
+        Call<Prospecto> callAgregarProspecto = holderApi.actualizarProspecto(prospecto);
         callAgregarProspecto.enqueue(new Callback<Prospecto>() {
             @Override
             public void onResponse(Call<Prospecto> call, Response<Prospecto> response) {
@@ -38,6 +36,4 @@ public class AgregarProspectoInteractor implements AgregarProspectoContract.Inte
             }
         });
     }
-
-
 }

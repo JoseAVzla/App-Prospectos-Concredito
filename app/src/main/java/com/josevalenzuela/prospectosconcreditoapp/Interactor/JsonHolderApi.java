@@ -9,6 +9,7 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 
 public interface JsonHolderApi {
 
@@ -17,4 +18,7 @@ public interface JsonHolderApi {
 
     @POST("prospectos/save")
     Call<Prospecto> guardarProspecto(@Body ProspectoRequestDTO prospecto);
+
+    @POST("prospectos/update")
+    Call<Prospecto> actualizarProspecto(@Body ProspectoRequestDTO prospecto);
 }
