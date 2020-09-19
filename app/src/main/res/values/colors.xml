@@ -7,4 +7,5 @@
     <color name="primaryLightColor">#76d275</color>
     <color name="primaryDarkColor">#00701a</color>
     <color name="primaryTextColor">#000000</color>
+    <color name="cancelColor">#C6B61E1E</color>
 </resources>
